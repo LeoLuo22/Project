@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<form action="login.html" method="POST" align="center">
+{% csrf_token %}
+Username:<input type="text" name="username"/>{{ error_message }}
+</br>
+Password:<input type="password" name="password"/>
+</br>
+<input type="submit" value="登录" />
+</br>
+</form>
+<div align="center">
+新用户？<a href="/iCHD/regist.html/">注册</a>
+</div>
+</body>
+</html>
