@@ -1,17 +1,8 @@
-<!DOCTYPE HTML>
-<html>
-<body>
-<form action="login.html" method="POST" align="center">
-{% csrf_token %}
-Username:<input type="text" name="username"/>{{ error_message }}
-</br>
-Password:<input type="password" name="password"/>
-</br>
-<input type="submit" value="登录" />
-</br>
-</form>
-<div align="center">
-新用户？<a href="/iCHD/regist.html/">注册</a>
-</div>
-</body>
-</html>
+
+{% extends "base.html" %}
+{% block content %}
+<h1>Welcome to my website</h1>
+<p><a href="/iCHD/blog/{{blog_title}}/detail.html"> {{blog_title}} </a></p>
+<p><a href="/iCHD/blog/blog_add.html"> 新增</a>一篇博客</p>
+
+{% endblock %}

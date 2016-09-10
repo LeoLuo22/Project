@@ -1,0 +1,4 @@
+{% for blog in blogs %}
+	{{ forloop.counter }}. {{blog.title}}: {{blog.body}}<a href="/iCHD/blog/{{blog.title}}/detail">查看</a> <a href="/iCHD/blog/{{blog.title}}/comment.html">评论</a>
+	</br>
+{% endfor %}
