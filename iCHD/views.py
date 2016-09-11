@@ -64,11 +64,13 @@ def detail(request, title):
     return HttpResponse( "<h1>" + blog.title+ "</h1>" + "</br>" + blog.body + "<a href='/iCHD/blog/" + blog.title  + "/comment" + "'"">" + "评论" + "</a>")
 
 def comment(request, title):
-    return render(request, 'iCHD/comment.html', {'title': title})
+    blog = Blog.objects.get(title=title)
+    comments = blog.comment_set.all()
+    return render(request, 'iCHD/comment.html', {'title': title, 'comments': comments})
 
 def comment_add(request, title):
     b = Blog.objects.get(title=title)
     comment = request.POST['content']
     b.comment_set.create(comment=comment)
-    return HttpResponse(comment)
+    return HttpResponseRedirect('../all.html')
 

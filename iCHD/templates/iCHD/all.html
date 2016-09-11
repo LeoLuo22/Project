@@ -1,4 +1,10 @@
+	<div style="background-color:red;height:100px"></div>
+<div style="background-color:blue;height:200px"></div>
 {% for blog in blogs %}
-	{{ forloop.counter }}. {{blog.title}}: {{blog.body}}<a href="/iCHD/blog/{{blog.title}}/detail">查看</a> <a href="/iCHD/blog/{{blog.title}}/comment.html">评论</a>
+	<p><h2>{{ forloop.counter }}.{{blog.title}}</h2> <h3>{{ blog.time }}</h3>
+	</br>
+	{{blog.body }}<!--<a href="/iCHD/blog/{{blog.title}}/detail">查看</a></p> <!-->
+	</br>
+	<p> <a href="/iCHD/blog/{{blog.title}}/comment.html">评论</a> </p>
 	</br>
 {% endfor %}
