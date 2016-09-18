@@ -46,27 +46,34 @@ def wel(request):
 def post(request):
     return render(request, 'iCHD/post.html')
 
-def detail(request):
-    b = Blog.objects.get(id=1)
-    return render(request, 'iCHD/blog/detail.html', {'blog':b})
-
 def delete(request):
-    b = Blog.objects.get(id=1)
+    b = get_object_or_404(Blog, id=1)
     b.delete()
     return HttpResponse("删除成功")
 
 def all(request):
+    Blogs = Blog.objects.all()
     blogs = Blog.objects.all()
-    return render(request, 'iCHD/all.html', {'blogs':blogs})
+    contents = []
+    for blog in Blogs:
+        if len(blog.body) > 100:
+            blog.body = blog.body[0:100]
+            contents.append(blog.body)
+        else:
+            contents.append(blog.body)
 
-def detail(request, title):
-    blog = Blog.objects.get(title=title)
-    return HttpResponse( "<h1>" + blog.title+ "</h1>" + "</br>" + blog.body + "<a href='/iCHD/blog/" + blog.title  + "/comment" + "'"">" + "评论" + "</a>")
+    return render(request, 'iCHD/all.html', {'blogs':blogs})#, 'contents':contents})#, {'contents':contents})
+
+def detail(request, id):
+    blog = get_object_or_404(Blog, id=id)
+    comments = blog.comment_set.all()
+    error_message = "文章不存在"
+    return render(request, 'iCHD/detail.html', {'blog': blog, 'error_message':error_message, 'comments':comments})
 
 def comment(request, title):
     blog = Blog.objects.get(title=title)
     comments = blog.comment_set.all()
-    return render(request, 'iCHD/comment.html', {'title': title, 'comments': comments})
+
 
 def comment_add(request, title):
     b = Blog.objects.get(title=title)

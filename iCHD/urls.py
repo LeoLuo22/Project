@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^blog/all', views.all, name='all'),
     url(r'^blog/(?P<title>\w*)/comment', views.comment, name='comment'),
     url(r'^blog/(?P<title>\w*)/fuck', views.comment_add, name='comment'),
+    url(r'^blog/(?P<id>\d*)', views.detail, name="detail"),
     ]
