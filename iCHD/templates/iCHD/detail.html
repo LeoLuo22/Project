@@ -396,7 +396,9 @@ EventUtil.addLoadHandler(function ()
 							<h2><a href="#">{{ blog.title }}</a></h2>
 						</div>
 						<div class="content">
+						{% autoescape off %}
 							<p>{{ blog.body}}</p>
+							{% endautoescape %}
 		
 						</div>
 						<div id="msgBox">

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class User(models.Model):
@@ -12,7 +13,7 @@ class User(models.Model):
 
 class Blog(models.Model):
     title = models.CharField(max_length=150)
-    body = models.TextField()
+    body = RichTextField(verbose_name="文章内容")
     time = models.DateTimeField()
 
     def __str__(self):

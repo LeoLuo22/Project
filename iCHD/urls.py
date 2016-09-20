@@ -19,4 +19,5 @@ urlpatterns = [
     url(r'^blog/(?P<title>\w*)/fuck', views.comment_add, name='comment'),
     #url(r'^blog/(\d*\w*)', views.test, name="indexs"),
     url(r'^blog/(?P<id>\d*$)', views.detail, name="detail"),
+    url(r'^blog/photos', views.photos, name='photos'),
     ]

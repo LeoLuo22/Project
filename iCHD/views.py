@@ -93,3 +93,5 @@ def test(request, id):#$, textarea):
     textarea = request.GET.get('textarea')
     return HttpResponse(textarea)
 
+def photos(request):
+    return render(request, 'iCHD/photos.html')
