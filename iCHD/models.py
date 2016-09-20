@@ -19,7 +19,9 @@ class Blog(models.Model):
         return self.title
 
 class Comment(models.Model):
-    comment = models.TextField()
+    content = models.TextField()
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    username = models.CharField(max_length=22)
+    datetime = models.DateTimeField()
     def __str__(self):
-        return self.comment
+        return self.content

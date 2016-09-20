@@ -67,6 +67,13 @@ def all(request):
 def detail(request, id):
     blog = get_object_or_404(Blog, id=id)
     comments = blog.comment_set.all()
+    try:
+        if len(request.GET.get('username')) != 0 and len(request.GET.get('textarea')) != 0:
+            username = request.GET.get('username')
+            textarea = request.GET.get('textarea')
+            blog.comment_set.create(username=username, content = textarea, datetime=timezone.now())
+    except TypeError as err:
+        pass
     error_message = "文章不存在"
     return render(request, 'iCHD/detail.html', {'blog': blog, 'error_message':error_message, 'comments':comments})
 
@@ -80,4 +87,9 @@ def comment_add(request, title):
     comment = request.POST['content']
     b.comment_set.create(comment=comment)
     return HttpResponseRedirect('../all.html')
+
+def test(request, id):#$, textarea):
+    user = request.GET.get('username')
+    textarea = request.GET.get('textarea')
+    return HttpResponse(textarea)
 
